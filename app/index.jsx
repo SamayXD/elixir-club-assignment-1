@@ -63,7 +63,8 @@ const index = () => {
                     color: "#00a86b",
                     fontSize: fontSize(6),
                     fontFamily: font.MontserratSemiBold,
-                    marginTop: height(1)
+                    marginTop: height(1),
+                    width: 'auto'
                 }}
             >
                 Elixir
@@ -105,7 +106,8 @@ const index = () => {
 
                     onPress={async () => {
                         if (isGranted) {
-                            router.navigate("screens/LoginScreen")
+                            // router.navigate("screens/LoginScreen")
+                            router.navigate("screens/HomeScreen")
                         }
                         else {
                             try {
