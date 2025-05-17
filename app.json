@@ -13,14 +13,21 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.cosamay.elixirclub",
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "This app uses your location to ...",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "This app uses your location to ..."
+      }
     },
     "android": {
+      "permissions": ["ACCESS_FINE_LOCATION", "ACCESS_COARSE_LOCATION"],
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.cosamay.elixirclub"
     },
     "web": {
       "favicon": "./assets/favicon.png"
