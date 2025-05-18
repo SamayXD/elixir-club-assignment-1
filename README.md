@@ -2,6 +2,11 @@
 
 Submission for SWE Intern (Mobile) Assignment at joinelixir.club
 
+# Download APK
+[https://drive.google.com/file/d/1JUMR3WiVg1nyrgsfz-9AC1Yz6i-HOa96/view?usp=sharing
+](https://drive.google.com/uc?export=download&id=1JUMR3WiVg1nyrgsfz-9AC1Yz6i-HOa96)
+
+
 # Screenshots
 | ![Image 8](https://github.com/user-attachments/assets/3867379b-3f32-4150-811c-dbaac4fa5465) | ![Image 7](https://github.com/user-attachments/assets/edb2cfde-96de-4780-95b0-12049839655e) | ![Image 6](https://github.com/user-attachments/assets/3c97233e-5549-49d4-a916-4decf959e58c) | ![Image 5](https://github.com/user-attachments/assets/3760f17d-3288-411a-a68f-9e696cc75e04) |
 | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
@@ -9,7 +14,8 @@ Submission for SWE Intern (Mobile) Assignment at joinelixir.club
 
 # Video (Github Upload)
 
-https://github.com/user-attachments/assets/21deeccc-9200-41fd-ad70-d5e10bfcb2a2
+
+https://github.com/user-attachments/assets/5a9288f6-b214-4142-8a1b-687326b45d8d
 
 
 
