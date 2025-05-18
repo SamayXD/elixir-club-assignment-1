@@ -9,7 +9,9 @@ Submission for SWE Intern (Mobile) Assignment at joinelixir.club
 
 # Video (Github Upload)
 
-Uploading Screen Recording 2025-05-18 at 1.24.38 PM.mov…
+https://github.com/user-attachments/assets/21deeccc-9200-41fd-ad70-d5e10bfcb2a2
+
+
 
 # Video (Youtube Upload)
 [![Watch the video](https://img.youtube.com/vi/9reb6gdKkvs/hqdefault.jpg)](https://www.youtube.com/watch?v=9reb6gdKkvs)
