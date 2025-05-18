@@ -158,7 +158,8 @@ const index = () => {
                         fontSize: fontSize(4),
                         textAlign: "center",
                         flexWrap: "wrap",
-                        width: width(80)
+                        width: width(70),
+                        marginBottom: height(5)
                     }}
                 >
                     We Need Location Permission to Proceed.
