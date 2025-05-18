@@ -11,7 +11,7 @@ const metrics = [
 ];
 
 const HomeScreen = () => {
-    const userName = 'Samay';
+    const userName = '<name>';
     const coins = 120;
 
     return (
@@ -21,14 +21,14 @@ const HomeScreen = () => {
                 <View style={styles.topBar}>
                     <View style={styles.logoBox}>
                         <Image
-                            source={{ uri: 'https://via.placeholder.com/40' }}
+                            source={require('../../assets/elixir-logo.png')}
                             style={styles.logo}
                         />
-                        <Text style={styles.companyName}>FitFinance</Text>
+                        <Text style={styles.companyName}>Elixir Club</Text>
                     </View>
                     <View style={styles.coinBox}>
                         <Image
-                            source={{ uri: 'https://cdn-icons-png.flaticon.com/512/138/138292.png' }}
+                            source={require('../../assets/elixir-logo.png')}
                             style={styles.coinIcon}
                         />
                         <Text style={styles.coinText}>{coins}</Text>
@@ -37,17 +37,6 @@ const HomeScreen = () => {
 
                 {/* Welcome */}
                 <Text style={styles.welcomeText}>Welcome back, {userName} 👋</Text>
-
-                {/* Small Metrics Row */}
-                <View style={styles.metricsRow}>
-                    {metrics.map((m, i) => (
-                        <View key={m.label} style={styles.miniMetricCard}>
-                            <Text style={styles.miniMetricIcon}>{m.icon}</Text>
-                            <Text style={styles.miniMetricValue}>{m.value}</Text>
-                            <Text style={styles.miniMetricLabel}>{m.label}</Text>
-                        </View>
-                    ))}
-                </View>
 
                 {/* All Metrics in One Line (Larger) */}
                 <View style={styles.metricsLine}>
@@ -65,7 +54,7 @@ const HomeScreen = () => {
                 <OfferCard
                     title="20% Off on Protein Packs"
                     desc="For active calorie burners"
-                    img="https://via.placeholder.com/120x120"
+                    img='../../assets/elixir-logo.png'
                 />
                 <OfferCard
                     title="Free Sleep Tracker Trial"
@@ -79,12 +68,12 @@ const HomeScreen = () => {
 
 const OfferCard = ({ title, desc, img }) => (
     <View style={styles.offerCard}>
-        <Image source={{ uri: img }} style={styles.offerImage} />
-        <View style={styles.offerTextContainer}>
+        <Image source={require('../../assets/elixir-logo.png')} style={styles.offerImage} />
+        < View style={styles.offerTextContainer} >
             <Text style={styles.offerTitle}>{title}</Text>
             <Text style={styles.offerDesc}>{desc}</Text>
         </View>
-    </View>
+    </View >
 );
 
 const styles = StyleSheet.create({
@@ -122,9 +111,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     coinIcon: {
-        width: width(5),
-        height: width(5),
-        marginRight: width(1),
+        width: width(7),
+        height: width(7),
+        marginRight: width(2),
+        borderRadius: 40
     },
     coinText: {
         fontSize: fontSize(4),

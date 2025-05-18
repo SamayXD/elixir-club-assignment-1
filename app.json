@@ -1,14 +1,15 @@
 {
   "expo": {
-    "name": "elixir-club",
+    "name": "Elixir",
     "slug": "elixir-club",
     "version": "1.0.0",
+    "scheme": "elixir-club",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/elixir-logo.png",
     "userInterfaceStyle": "light",
-    "newArchEnabled": true,
+    "newArchEnabled": false,
     "splash": {
-      "image": "./assets/splash-icon.png",
+      "image": "./assets/elixir-logo.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -23,7 +24,7 @@
     "android": {
       "permissions": ["ACCESS_FINE_LOCATION", "ACCESS_COARSE_LOCATION"],
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/elixir-logo.png",
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
@@ -31,6 +32,11 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "9e3f03fb-022c-4b84-99a3-611dcfaf9414"
+      }
     }
   }
 }

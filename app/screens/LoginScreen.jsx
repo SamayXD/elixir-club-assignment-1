@@ -36,7 +36,7 @@ const LoginScreen = () => {
     const handleOTPSubmit = async (otp) => {
         setIsLoading(true);
         try {
-
+            // Simulating verify Otp API CALL
             await new Promise(resolve => setTimeout(resolve, 1500));
             setIsLoading(false)
             await new Promise(resolve => setTimeout(resolve, 300));
@@ -128,29 +128,6 @@ const LoginScreen = () => {
         }
     };
 
-    // Header and subtitle for each stage
-    // const getStageHeader = () => {
-    //     switch (stage) {
-    //         case 0:
-    //             return {
-    //                 title: 'Welcome to Elixir',
-    //                 subtitle: 'Your Health & Wealth Partner',
-    //             };
-    //         case 1:
-    //             return {
-    //                 title: 'Verify OTP',
-    //                 subtitle: 'Enter the code sent to your phone',
-    //             };
-    //         case 2:
-    //             return {
-    //                 title: 'Complete Your Profile',
-    //                 subtitle: 'Let us know a bit more about you',
-    //             };
-    //         default:
-    //             return { title: '', subtitle: '' };
-    //     }
-    // };
-    // const { title: stageTitle, subtitle: stageSubtitle } = getStageHeader();
 
     return (
         <KeyboardAvoidingView
@@ -332,6 +309,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.2,
         shadowRadius: 8,
         elevation: 4,
+        marginBottom: height(1)
     },
     nextButtonDisabled: {
         backgroundColor: '#B8E6D0',

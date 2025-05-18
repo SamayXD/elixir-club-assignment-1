@@ -56,12 +56,12 @@ const UserDetails = ({ onSubmit }) => {
 
         <Animated.View
             style={styles.stageContainer}
-            entering={SlideInRight}
-            exiting={SlideOutLeft}
+            entering={SlideInRight.duration(500)}
+            exiting={SlideOutLeft.duration(500)}
         >
             <ScrollView
                 ref={scrollViewRef}
-                contentContainerStyle={{ flexGrow: 1, paddingBottom: Keyboard.addListener.keyboardDidHide ? height(2) : height(1) }}
+                contentContainerStyle={{ flexGrow: 1, paddingBottom: Keyboard.isVisible() ? height(3) : height(3) }}
                 showsVerticalScrollIndicator={false}
                 keyboardShouldPersistTaps="handled"
             >
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.1,
         shadowRadius: 4,
         elevation: 3,
-        maxHeight: height(40)
+        maxHeight: height(60)
     },
     topHalf: {
         flex: 0,

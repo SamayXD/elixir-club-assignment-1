@@ -20,8 +20,8 @@ const PhoneNumberInput = ({ onSubmit }) => {
     return (
         <Animated.View
             style={styles.stageContainer}
-            entering={SlideInRight}
-            exiting={SlideOutLeft}
+            entering={SlideInRight.duration(500)}
+            exiting={SlideOutLeft.duration(500)}
         >
             <View style={styles.inputWrapper}>
                 <Text style={styles.stageTitle}>Welcome to Elixir</Text>

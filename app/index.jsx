@@ -64,7 +64,8 @@ const index = () => {
                     fontSize: fontSize(6),
                     fontFamily: font.MontserratSemiBold,
                     marginTop: height(1),
-                    width: 'auto'
+                    width: width(30),
+                    textAlign: "center"
                 }}
             >
                 Elixir
@@ -106,8 +107,8 @@ const index = () => {
 
                     onPress={async () => {
                         if (isGranted) {
-                            // router.navigate("screens/LoginScreen")
-                            router.navigate("screens/HomeScreen")
+                            router.navigate("screens/LoginScreen")
+                            // router.navigate("screens/HomeScreen")
                         }
                         else {
                             try {
@@ -139,6 +140,8 @@ const index = () => {
                                 color: isGranted ? "white" : "#00a86b",
                                 fontSize: fontSize(4),
                                 fontFamily: font.MontserratMedium,
+                                width: "100%",
+                                textAlign: 'center'
 
                             }}
                         >
@@ -152,8 +155,10 @@ const index = () => {
                 <Text
                     style={{
                         fontFamily: font.MontserratLight,
-                        fontSize: fontSize(5),
-                        textAlign: "center"
+                        fontSize: fontSize(4),
+                        textAlign: "center",
+                        flexWrap: "wrap",
+                        width: width(80)
                     }}
                 >
                     We Need Location Permission to Proceed.

@@ -81,8 +81,8 @@ const OTPVerification = ({ onSubmit }) => {
     return (
         <Animated.View
             style={styles.stageContainer}
-            entering={SlideInRight}
-            exiting={SlideOutLeft}
+            entering={SlideInRight.duration(500)}
+            exiting={SlideOutLeft.duration(500)}
         >
             <Text style={styles.stageTitle}>Verify Your Number</Text>
             <Text style={styles.subtitle}>Enter the code we sent you</Text>
