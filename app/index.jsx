@@ -8,11 +8,6 @@ import { askForLocationPermission } from '../utils/api/locationService';
 
 
 
-
-
-
-
-
 const index = () => {
     const [isGranted, setIsGranted] = useState(false);
 
@@ -105,26 +100,26 @@ const index = () => {
                         marginBottom: height(1)
                     }}
 
-                    onPress={async () => {
-                        if (isGranted) {
-                            router.navigate("screens/LoginScreen")
-                            // router.navigate("screens/HomeScreen")
-                        }
-                        else {
-                            try {
-                                const result = await askForLocationPermission();
-                                console.log(result);
-                                setIsGranted(result == 'granted');
-                                if (result === 'granted') {
-                                    Alert.alert("Permission granted", "Location permission has been granted.");
-                                }
-                            } catch (error) {
-                                console.error("Error requesting location permission:", error);
-                                setIsGranted("error");
-                                Alert.alert("Error", "There was an error requesting location permission.");
-                            }
-                        }
-
+                    onPress={() => {
+                        // if (isGranted) {
+                        //     router.navigate("screens/LoginScreen")
+                        //     // router.navigate("screens/HomeScreen")
+                        // }
+                        // else {
+                        //     try {
+                        //         const result = await askForLocationPermission();
+                        //         console.log(result);
+                        //         setIsGranted(result == 'granted');
+                        //         if (result === 'granted') {
+                        //             Alert.alert("Permission granted", "Location permission has been granted.");
+                        //         }
+                        //     } catch (error) {
+                        //         console.error("Error requesting location permission:", error);
+                        //         setIsGranted("error");
+                        //         Alert.alert("Error", "There was an error requesting location permission.");
+                        //     }
+                        // }
+                        router.navigate("screens/LoginScreen")
 
                     }}
                 >

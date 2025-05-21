@@ -12,7 +12,6 @@ export default function _layout() {
             <Stack initialRouteName='index'>
                 <Stack.Screen name='index' options={{
                     headerShown: false
-
                 }} />
                 <Stack.Screen name='screens/HomeScreen' options={{
                     headerShown: false,

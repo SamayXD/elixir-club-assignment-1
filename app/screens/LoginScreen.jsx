@@ -1,5 +1,5 @@
-import { ActivityIndicator, Image, KeyboardAvoidingView, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React, { useState } from 'react'
+import { ActivityIndicator, Image, KeyboardAvoidingView, Platform, StyleSheet, Text, TouchableOpacity, View, Alert } from 'react-native'
+import React, { useEffect, useState } from 'react'
 import { fontSize, height, width } from '../../utils/constants/responsiveUtils'
 import { font } from '../../utils/constants/constant'
 import Animated, { FadeIn, FadeOut } from 'react-native-reanimated'
@@ -8,8 +8,11 @@ import OTPVerification from '../../components/OTPVerification'
 import PhoneNumberInput from '../../components/PhoneNumberInput'
 import UserDetails from '../../components/UserDetails'
 import { Keyboard } from 'react-native';
+import { askForLocationPermission } from '../../utils/api/locationService'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 const LoginScreen = () => {
+    const [isGranted, setIsGranted] = useState(false);
     const [stage, setStage] = useState(0);
     const [isLoading, setIsLoading] = useState(false);
     const [userData, setUserData] = useState({
@@ -18,6 +21,48 @@ const LoginScreen = () => {
         name: '',
         email: ''
     });
+    useEffect(() => {
+        // Never use async directly on useEffect
+        const fetchStage = async () => {
+            const value = await getStageLocal();
+            setStage(value);
+        };
+
+        fetchStage();
+        // The console.log here will show the initial value (0), not the fetched value
+        // because the fetch is asynchronous
+    }, []);
+
+    // This useEffect will run after stage changes
+    useEffect(() => {
+        console.log("Current stage:", stage);
+    }, [stage]);
+
+    const getStageLocal = async () => {
+        try {
+            const value = await AsyncStorage.getItem('stage');
+            if (value !== null) {
+                return parseInt(value);
+            } else {
+                return 0;
+            }
+        } catch (e) {
+            console.log("getStageLocal error:", e);
+            return 0; // Return default value on error
+        }
+    };
+
+    const storeStageLocal = async (value) => {
+        try {
+            await AsyncStorage.setItem('stage', value.toString());
+            // No need to call getStageLocal here unless you're doing something with the return value
+            // Instead, update the state directly
+            setStage(value);
+        } catch (e) {
+            console.log("storeStageLocal error:", e);
+        }
+    };
+
 
     // Handle phone number submission
     const handlePhoneSubmit = async (phoneNumber) => {
@@ -41,7 +86,9 @@ const LoginScreen = () => {
             setIsLoading(false)
             await new Promise(resolve => setTimeout(resolve, 300));
             setUserData(prev => ({ ...prev, otp }));
-            setStage(2);
+            storeStageLocal(2);
+            // setStage(2);
+            router.navigate("screens/HomeScreen")
         } catch (error) {
             console.error(error);
         } finally {
@@ -50,12 +97,32 @@ const LoginScreen = () => {
     };
 
     // Handle user details submission
+
     const handleUserDetailsSubmit = async (details) => {
+        if (isGranted) {
+            // router.navigate("screens/HomeScreen")
+            // router.navigate("screens/HomeScreen")
+            // setStage(1);
+            console.log("granted handleuser")
+        }
+        else {
+            try {
+                const result = await askForLocationPermission();
+                console.log(result);
+                setIsGranted(result == 'granted');
+                if (result === 'granted') {
+                    Alert.alert("Permission granted", "Location permission has been granted.");
+                }
+            } catch (error) {
+                console.error("Error requesting location permission:", error);
+                setIsGranted("error");
+                Alert.alert("Error", "There was an error requesting location permission.");
+            }
+        }
         // setIsLoading(true);
         try {
             // await new Promise(resolve => setTimeout(resolve, 1500));
             setUserData(prev => ({ ...prev, ...details }));
-            // router.navigate("screens/HomeScreen");
         } catch (error) {
             console.error(error);
         } finally {
@@ -67,15 +134,6 @@ const LoginScreen = () => {
     const handleNext = async () => {
         switch (stage) {
             case 0:
-                if (userData.phoneNumber.length === 10) {
-                    handlePhoneSubmit(userData.phoneNumber);
-                    setStage(1);
-                }
-                break;
-            case 1:
-                // OTP is auto-submitted when complete
-                break;
-            case 2:
                 if (userData.name && userData.email) {
                     handleUserDetailsSubmit({ name: userData.name, email: userData.email });
                     try {
@@ -85,7 +143,10 @@ const LoginScreen = () => {
                         setIsLoading(false);
 
                         await new Promise(resolve => setTimeout(resolve, 1000));
-                        router.navigate("screens/HomeScreen");
+                        // router.navigate("screens/HomeScreen");
+                        storeStageLocal(1)
+                        setStage(1)
+
                     } catch (error) {
                         console.error(error);
                     } finally {
@@ -93,6 +154,34 @@ const LoginScreen = () => {
                     }
                     // router.navigate("screens/HomeScreen")
                 }
+            case 1:
+                if (userData.phoneNumber.length === 10) {
+                    handlePhoneSubmit(userData.phoneNumber);
+                    storeStageLocal(2)
+                    setStage(2);
+                }
+                break;
+            case 2:
+                // OTP is auto-submitted when complete
+                break;
+                // case 2:
+                //     if (userData.name && userData.email) {
+                //         handleUserDetailsSubmit({ name: userData.name, email: userData.email });
+                //         try {
+                //             setIsLoading(true)
+                //             Keyboard.dismiss();
+                //             await new Promise(resolve => setTimeout(resolve, 1500));
+                //             setIsLoading(false);
+
+                //             await new Promise(resolve => setTimeout(resolve, 1000));
+                //             router.navigate("screens/HomeScreen");
+                //         } catch (error) {
+                //             console.error(error);
+                //         } finally {
+                //             // setIsLoading(false);
+                //         }
+                //         // router.navigate("screens/HomeScreen")
+                //     }
 
                 break;
         }
@@ -102,11 +191,11 @@ const LoginScreen = () => {
     const isNextEnabled = () => {
         switch (stage) {
             case 0:
-                return userData.phoneNumber.length === 10;
-            case 1:
-                return false; // OTP is auto-submitted
-            case 2:
                 return userData.name && userData.email;
+            case 1:
+                return userData.phoneNumber.length === 10;
+            case 2:
+                return false; // OTP is auto-submitted
             default:
                 return false;
         }
@@ -118,11 +207,12 @@ const LoginScreen = () => {
 
         switch (stage) {
             case 0:
-                return <PhoneNumberInput key={key} onSubmit={handlePhoneSubmit} />;
-            case 1:
-                return <OTPVerification key={key} onSubmit={handleOTPSubmit} />;
-            case 2:
                 return <UserDetails key={key} onSubmit={handleUserDetailsSubmit} />;
+            case 1:
+                return <PhoneNumberInput key={key} onSubmit={handlePhoneSubmit} />;
+            case 2:
+                return <OTPVerification key={key} onSubmit={handleOTPSubmit} />;
+
             default:
                 return null;
         }
